@@ -24,7 +24,9 @@ export const callContract = async ({
   calldata,
 }: CallContractParameters) => {
   const provider = new Provider({
-    network: starknetNetwork === "mainnet" ? "mainnet-alpha" : "goerli-alpha",
+    sequencer: {
+      network: starknetNetwork === "mainnet" ? "mainnet-alpha" : "goerli-alpha",
+    },
   });
   const rawCalldata: RawCalldata = [];
   calldata?.forEach((d) => rawCalldata.push(getRawCallData(d)));
