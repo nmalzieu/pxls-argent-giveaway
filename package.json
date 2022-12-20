@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "migrate": "./node_modules/prisma/build/index.js migrate deploy",
-    "start": "yarn migrate && next start",
+    "start": "yarn migrate && next start -p 8080",
     "lint": "next lint",
     "postinstall": "prisma generate"
   },
