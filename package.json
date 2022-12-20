@@ -1,0 +1,33 @@
+{
+  "name": "argent-giveaway",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@next/font": "13.0.7",
+    "@prisma/client": "4.7.1",
+    "@starknet-react/core": "^0.14.8",
+    "@types/node": "18.11.15",
+    "@types/react": "18.0.26",
+    "@types/react-dom": "18.0.9",
+    "autoprefixer": "^10.4.13",
+    "axios": "^1.2.1",
+    "eslint": "8.29.0",
+    "eslint-config-next": "13.0.7",
+    "nanoid": "^4.0.0",
+    "next": "13.0.7",
+    "postcss": "^8.4.20",
+    "prisma": "^4.7.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "sass": "^1.57.1",
+    "starknet": "^3.18.2",
+    "tailwindcss": "^3.2.4",
+    "typescript": "4.9.4"
+  }
+}
