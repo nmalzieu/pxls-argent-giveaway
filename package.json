@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "migrate": "./node_modules/prisma/build/index.js migrate deploy",
+    "start": "yarn migrate && next start",
     "lint": "next lint"
   },
   "dependencies": {
