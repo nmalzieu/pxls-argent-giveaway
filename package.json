@@ -7,7 +7,8 @@
     "build": "next build",
     "migrate": "./node_modules/prisma/build/index.js migrate deploy",
     "start": "yarn migrate && next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@next/font": "13.0.7",
