@@ -386,7 +386,7 @@ export const getServerSideProps = async (ctx: NextPageContext) => {
   });
   return {
     props: {
-      participants: signatures.map((s) => s.wallet),
+      participants: signatures.map((s: any) => s.wallet),
     },
   };
 };
