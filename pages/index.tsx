@@ -277,7 +277,7 @@ export default function Home({ participants }: Props) {
         <img src="/giveaway.svg" className="mx-auto mt-12" />
         <div className="mt-[80px] mb-[60px] md:mt-[150px] md:mb-[150px] relative">
           <img
-            src="/sample.svg"
+            src="/33.svg"
             className="w-[189px] h-[189px] md:w-[400px] md:h-[400px] border-2 border-black inline-block"
           />
           <img
@@ -291,7 +291,7 @@ export default function Home({ participants }: Props) {
           ordered this “Argent X Pxls” rtwrk and we’ll give it to one of you.
           <br /> <br />
           <a
-            href="https://mintsquare.io/asset/starknet/0x0044bac3f28118ea1946963a1bc1dc6e3752e2ed1b355c0113fd8087d2db6b66/21"
+            href="https://aspect.co/asset/0x0044bac3f28118ea1946963a1bc1dc6e3752e2ed1b355c0113fd8087d2db6b66/33"
             target="_blank"
             rel="noreferrer"
           >
@@ -299,7 +299,7 @@ export default function Home({ participants }: Props) {
           </a>{" "}
           -{" "}
           <a
-            href="https://mintsquare.io/asset/starknet/0x0044bac3f28118ea1946963a1bc1dc6e3752e2ed1b355c0113fd8087d2db6b66/21"
+            href="https://mintsquare.io/asset/starknet/0x0044bac3f28118ea1946963a1bc1dc6e3752e2ed1b355c0113fd8087d2db6b66/33"
             target="_blank"
             rel="noreferrer"
           >

@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <StarknetConfig connectors={connectors}>
       <Head>
-        <title>ArgentX x Pxls</title>
+        <title>Argent X Pxls - the rtwrk gvw</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <link
@@ -30,7 +30,11 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <link rel="manifest" href="/site.webmanifest" />
         <meta property="og:url" content="https://argentx.pxls.wtf" />
-        <meta property="og:title" content="ArgentX x Pxls" />
+        <meta
+          property="og:description"
+          content="We’re giving away rtwrk #33 “Argent X Pxls” - discover how to participate."
+        />
+        <meta property="og:title" content="Argent X Pxls - the rtwrk gvw" />
         <meta
           property="og:image"
           content="https://argentx.pxls.wtf/social_sharing.png"
