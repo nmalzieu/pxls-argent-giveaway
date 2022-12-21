@@ -68,15 +68,18 @@ export default function Home({ participants }: Props) {
     null
   );
 
-  const argentAvailable = useRef(false);
+  const argentAvailableRef = useRef(false);
+  const [argentAvailable, setArgentAvailable] = useState(false);
 
   useEffect(() => {
     const connector = connectors.find((c) => c.id() === "argentX");
     if (connector) {
       setArgentConnector(connector);
-      argentAvailable.current = connector.available();
+      argentAvailableRef.current = connector.available();
+      setArgentAvailable(connector.available());
     } else {
-      argentAvailable.current = false;
+      argentAvailableRef.current = false;
+      setArgentAvailable(false);
     }
   }, [connectors]);
 
@@ -108,11 +111,12 @@ export default function Home({ participants }: Props) {
 
   useEffect(() => {
     let interval: any = setInterval(() => {
-      if (argentAvailable.current) {
+      if (argentAvailableRef.current) {
         clearInterval(interval);
         interval = null;
       } else {
         refreshConnectors();
+        console.log("refreshing connectores");
       }
     }, 1000);
     return () => {
@@ -153,12 +157,12 @@ export default function Home({ participants }: Props) {
             <div className="max-w-[325px] mx-auto">
               <Button
                 text={
-                  argentAvailable.current
+                  argentAvailable
                     ? "Connect and sign"
                     : "Please install Argent X"
                 }
                 action={() => {
-                  if (!argentAvailable.current || !argentConnector) return;
+                  if (!argentAvailable || !argentConnector) return;
                   if (status !== "disconnected" && !isMainnet) {
                     try {
                       disconnect();
@@ -174,7 +178,7 @@ export default function Home({ participants }: Props) {
                     signTypedData();
                   }
                 }}
-                disabled={!argentAvailable.current}
+                disabled={!argentAvailable}
                 rainbow
                 block
               />
