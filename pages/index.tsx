@@ -188,7 +188,8 @@ export default function Home({ participants }: Props) {
             )}
             {verifyingSignature !== "notyet" && (
               <div className="text-[#FF4848] text-sm mt-2">
-                There was a problem. Please try again.
+                There was a problem. If you just deployed your Argent wallet,
+                please wait a moment and try again.
               </div>
             )}
           </>
