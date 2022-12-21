@@ -14,6 +14,6 @@ html {
   overflow-x: hidden;
 }
 
-a:hover {
+a {
   text-decoration: underline;
 }

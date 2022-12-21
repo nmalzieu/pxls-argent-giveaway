@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <StarknetConfig connectors={connectors}>
       <Head>
-        <title>Argent X Pxls - the rtwrk gvw</title>
+        <title>Argent X Pxls</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <link

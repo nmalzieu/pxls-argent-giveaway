@@ -25,7 +25,12 @@ export default function Home({ participants }: Props) {
 
   const isMainnet = chain && chain.id === "0x534e5f4d41494e";
 
-  const { connect, connectors, disconnect } = useConnectors();
+  const {
+    connect,
+    connectors,
+    disconnect,
+    refresh: refreshConnectors,
+  } = useConnectors();
   const { data: signature, signTypedData } = useSignTypedData(messageToSign);
   const [code, setCode] = useState("");
 
@@ -63,10 +68,15 @@ export default function Home({ participants }: Props) {
     null
   );
 
+  const argentAvailable = useRef(false);
+
   useEffect(() => {
     const connector = connectors.find((c) => c.id() === "argentX");
     if (connector) {
       setArgentConnector(connector);
+      argentAvailable.current = connector.available();
+    } else {
+      argentAvailable.current = false;
     }
   }, [connectors]);
 
@@ -95,7 +105,23 @@ export default function Home({ participants }: Props) {
   }, [code]);
 
   let statusComponent = <div></div>;
-  const argentAvailable = argentConnector && argentConnector.available();
+
+  useEffect(() => {
+    let interval: any = setInterval(() => {
+      if (argentAvailable.current) {
+        clearInterval(interval);
+        interval = null;
+      } else {
+        refreshConnectors();
+      }
+    }, 1000);
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+        interval = null;
+      }
+    };
+  }, [refreshConnectors]);
 
   if (
     status === "disconnected" ||
@@ -202,6 +228,7 @@ export default function Home({ participants }: Props) {
               <input
                 className="border-black border w-[325px] h-[42px] outline-none p-2 mt-3"
                 ref={tweetInputRef}
+                placeholder="Link to tweet"
               />
               <Button text="Validate" action={validateTweet} rainbow block />
             </div>
@@ -365,6 +392,11 @@ export default function Home({ participants }: Props) {
           className="w-full absolute top-0 -translate-y-1/2"
         />
         <b className="pb-6 block">They participated</b>
+        {verifyingSignature === "done" && verifyingTweet === "done" && (
+          <div className="max-w-[437px] mx-auto break-words pb-6 px-6">
+            {address} (you)
+          </div>
+        )}
         {participants.map((p) => (
           <div key={p} className="max-w-[437px] mx-auto break-words pb-6 px-6">
             {p}
