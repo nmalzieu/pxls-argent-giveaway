@@ -27,8 +27,8 @@ export default function Home({ participants }: Props) {
 
   const {
     connect,
-    connectors,
     disconnect,
+    available,
     refresh: refreshConnectors,
   } = useConnectors();
   const { data: signature, signTypedData } = useSignTypedData(messageToSign);
@@ -72,18 +72,18 @@ export default function Home({ participants }: Props) {
   const [argentAvailable, setArgentAvailable] = useState(false);
 
   useEffect(() => {
-    const connector = connectors.find((c) => c.id() === "argentX");
+    const connector = available.find((c) => c.id() === "argentX");
     if (connector) {
       setArgentConnector(connector);
-      argentAvailableRef.current = connector.available();
+      argentAvailableRef.current = true;
       setArgentAvailable(connector.available());
     } else {
       argentAvailableRef.current = false;
       setArgentAvailable(false);
     }
-  }, [connectors]);
+  }, [available]);
 
-  console.log({ connectors: connectors.map((c) => c.id()) });
+  console.log({ connectors: available.map((c) => c.id()) });
 
   const [clickedTweet, setClickedTweet] = useState(false);
 
