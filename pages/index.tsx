@@ -158,7 +158,7 @@ export default function Home({ participants }: Props) {
                     : "Please install Argent X"
                 }
                 action={() => {
-                  if (!argentAvailable) return;
+                  if (!argentAvailable || !argentConnector) return;
                   if (status !== "disconnected" && !isMainnet) {
                     try {
                       disconnect();
