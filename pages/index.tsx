@@ -83,6 +83,8 @@ export default function Home({ participants }: Props) {
     }
   }, [connectors]);
 
+  console.log({ connectors: connectors.map((c) => c.id()) });
+
   const [clickedTweet, setClickedTweet] = useState(false);
 
   const tweetInputRef = useRef<HTMLInputElement>(null);
@@ -116,7 +118,7 @@ export default function Home({ participants }: Props) {
         interval = null;
       } else {
         refreshConnectors();
-        console.log("refreshing connectores");
+        console.log("refreshing connectors");
       }
     }, 1000);
     return () => {
