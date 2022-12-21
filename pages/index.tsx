@@ -127,11 +127,7 @@ export default function Home({ participants }: Props) {
     };
   }, [refreshConnectors]);
 
-  if (
-    status === "disconnected" ||
-    verifyingSignature === "notyet" ||
-    verifyingSignature === "verifyingSignature"
-  ) {
+  if (status === "disconnected" || verifyingSignature !== "done") {
     statusComponent = (
       <div>
         <div>
@@ -186,6 +182,11 @@ export default function Home({ participants }: Props) {
             {status !== "disconnected" && !isMainnet && (
               <div className="text-[#FF4848] text-sm mt-2">
                 Please connect to Starknet mainnet.
+              </div>
+            )}
+            {verifyingSignature !== "notyet" && (
+              <div className="text-[#FF4848] text-sm mt-2">
+                There was a problem. Please try again.
               </div>
             )}
           </>
@@ -401,11 +402,25 @@ export default function Home({ participants }: Props) {
             {address} (you)
           </div>
         )}
-        {participants.map((p) => (
-          <div key={p} className="max-w-[437px] mx-auto break-words pb-6 px-6">
-            {p}
-          </div>
-        ))}
+        {participants
+          .filter((p) => {
+            if (
+              p.toLocaleLowerCase() === address &&
+              verifyingSignature === "done" &&
+              verifyingTweet === "done"
+            ) {
+              return false;
+            }
+            return true;
+          })
+          .map((p) => (
+            <div
+              key={p}
+              className="max-w-[437px] mx-auto break-words pb-6 px-6"
+            >
+              {p}
+            </div>
+          ))}
       </div>
       <div className="bg-white py-8">
         <img src="/argent_x_pxls.svg" className="block mx-auto" />
