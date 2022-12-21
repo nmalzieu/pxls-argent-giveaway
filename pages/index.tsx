@@ -153,12 +153,12 @@ export default function Home({ participants }: Props) {
             <div className="max-w-[325px] mx-auto">
               <Button
                 text={
-                  argentAvailable
+                  argentAvailable.current
                     ? "Connect and sign"
                     : "Please install Argent X"
                 }
                 action={() => {
-                  if (!argentAvailable || !argentConnector) return;
+                  if (!argentAvailable.current || !argentConnector) return;
                   if (status !== "disconnected" && !isMainnet) {
                     try {
                       disconnect();
@@ -174,7 +174,7 @@ export default function Home({ participants }: Props) {
                     signTypedData();
                   }
                 }}
-                disabled={!argentAvailable}
+                disabled={!argentAvailable.current}
                 rainbow
                 block
               />
