@@ -49,10 +49,12 @@ export default async function handler(
     return res.status(400).json({ error: "WRONG_TWEET" });
   }
 
-  await prisma.signatures.update({
-    where: { code },
-    data: { tweet: tweetURL },
-  });
+  if (!signature.tweet) {
+    await prisma.signatures.update({
+      where: { code },
+      data: { tweet: tweetURL },
+    });
+  }
 
   res.status(200).json({ message: "OK" });
 }

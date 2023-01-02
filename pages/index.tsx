@@ -103,7 +103,7 @@ export default function Home({ participants }: Props) {
 
   const openTweet = useCallback(() => {
     setVerifyingTweet("notyet");
-    const textToTweet = `I've just entered the first on-chain NFT giveaway hosted by @PxlsWtf on StarkNet by signing a message with my @argentHQ wallet (it's free!)\n
+    const textToTweet = `I've just entered the first on-chain NFT giveaway hosted by @PxlsWtf and @argentHQ on StarkNet by signing a message with my Argent X wallet (it's free!)\n
 proof:${code}\n
 You can enter and find the rules here: https://argentx.pxls.wtf/`;
     window.open(
