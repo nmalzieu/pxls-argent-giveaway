@@ -3,7 +3,7 @@ import axios from "axios";
 import { prisma } from "../../prisma/client";
 
 const tweetIDRegex = new RegExp("^https://twitter.com/(.*?)/status/(.*?)(/|$)");
-const codeRegex = new RegExp("code:(.*?)($|\\s)");
+const codeRegex = new RegExp("proof:(.*?)($|\\s)");
 
 export default async function handler(
   req: NextApiRequest,

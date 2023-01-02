@@ -17,7 +17,7 @@ type Props = {
   participants: string[];
 };
 
-const reveal = "XXX the XXth at XX:XXpm";
+const reveal = "January the 9th at 7pm UTC";
 
 export default function Home({ participants }: Props) {
   const { address, status } = useAccount();
@@ -103,7 +103,9 @@ export default function Home({ participants }: Props) {
 
   const openTweet = useCallback(() => {
     setVerifyingTweet("notyet");
-    const textToTweet = `Super Pxls Lol ! code:${code}`;
+    const textToTweet = `I've just entered the first on-chain NFT giveaway hosted by @PxlsWtf on StarkNet by signing a message with my @argentHQ wallet (it's free!)\n
+proof:${code}\n
+You can enter and find the rules here: https://argentx.pxls.wtf/`;
     window.open(
       `https://twitter.com/intent/tweet?text=${encodeURIComponent(textToTweet)}`
     );
