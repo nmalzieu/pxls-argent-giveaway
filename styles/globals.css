@@ -3,15 +3,18 @@
 @tailwind utilities;
 
 html {
-  background-image: url(/background-live.png);
-  background-size: cover;
-  background-position: top center;
   font-family: 'Arial Narrow', Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+.background {
+  background-image: url(/background-live.png);
+  background-size: cover;
+  background-position: top center;
 }
 
 a {

@@ -83,8 +83,6 @@ export default function Home({ participants }: Props) {
     }
   }, [available]);
 
-  console.log({ connectors: available.map((c) => c.id()) });
-
   const [clickedTweet, setClickedTweet] = useState(false);
 
   const tweetInputRef = useRef<HTMLInputElement>(null);
@@ -309,91 +307,93 @@ You can enter and find the rules here: https://argentx.pxls.wtf/`;
 
   return (
     <>
-      <div className="container text-center mx-auto">
-        <img src="/logo.svg" className="mx-auto my-8" />
-        <img src="/giveaway.svg" className="mx-auto mt-12" />
-        <div className="mt-[80px] mb-[60px] md:mt-[150px] md:mb-[150px] relative">
-          <img
-            src="/33.svg"
-            className="w-[189px] h-[189px] md:w-[400px] md:h-[400px] border-2 border-black inline-block"
-          />
-          <img
-            src="/pink_border.svg"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2	-translate-y-1/2 w-[254px] h-[252px] md:w-auto md:h-auto"
-          />
-        </div>
-        <p className="text-white max-w-[407px] text-center mx-auto p-6 md:p-0 mb-12">
-          Starknet people, we are giving away this masterpiece! As part of the
-          Meet the Dapp series, we explained how to order an rtwrk on Pxls. We
-          ordered this “Argent X Pxls” rtwrk and we’ll give it to one of you.
-          <br /> <br />
-          <a
-            href="https://aspect.co/asset/0x0044bac3f28118ea1946963a1bc1dc6e3752e2ed1b355c0113fd8087d2db6b66/33"
-            target="_blank"
-            rel="noreferrer"
-          >
-            See it on Aspect
-          </a>{" "}
-          -{" "}
-          <a
-            href="https://mintsquare.io/asset/starknet/0x0044bac3f28118ea1946963a1bc1dc6e3752e2ed1b355c0113fd8087d2db6b66/33"
-            target="_blank"
-            rel="noreferrer"
-          >
-            See it on Mintsquare
-          </a>
-        </p>
-        <div className="h-20 relative mb-6 mt-10 hidden md:block pointer-events-none">
-          <img
-            src="/argent_x_pxls_banner.svg"
-            className="absolute max-w-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-          />
-        </div>
-        <div className="block md:hidden bg-white">
-          <div className="p-6">
-            <b>WTF? How do I get it?</b>
+      <div className="background">
+        <div className="container text-center mx-auto">
+          <img src="/logo.svg" className="mx-auto py-8" />
+          <img src="/giveaway.svg" className="mx-auto mt-12" />
+          <div className="mt-[80px] mb-[60px] md:mt-[150px] md:mb-[150px] relative">
+            <img
+              src="/33.svg"
+              className="w-[189px] h-[189px] md:w-[400px] md:h-[400px] border-2 border-black inline-block"
+            />
+            <img
+              src="/pink_border.svg"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2	-translate-y-1/2 w-[254px] h-[252px] md:w-auto md:h-auto"
+            />
           </div>
-          <div className="border-black border-b mb-1" />
-          <div className="border-black border-b mb-6" />
-          <div className="px-6 pb-12">
-            You need to use an Argent X wallet on desktop in order to
-            participate.
-            <br />
-            Go to <span className="underline">
-              https://argentx.pxls.wtf/
-            </span>{" "}
-            on your computer.
-            <br />
-            <br />
-            On {reveal} we’ll randomly pick the winner amongst participants.
+          <p className="text-white max-w-[407px] text-center mx-auto p-6 md:p-0 mb-12">
+            Starknet people, we are giving away this masterpiece! As part of the
+            Meet the Dapp series, we explained how to order an rtwrk on Pxls. We
+            ordered this “Argent X Pxls” rtwrk and we’ll give it to one of you.
+            <br /> <br />
+            <a
+              href="https://aspect.co/asset/0x0044bac3f28118ea1946963a1bc1dc6e3752e2ed1b355c0113fd8087d2db6b66/33"
+              target="_blank"
+              rel="noreferrer"
+            >
+              See it on Aspect
+            </a>{" "}
+            -{" "}
+            <a
+              href="https://mintsquare.io/asset/starknet/0x0044bac3f28118ea1946963a1bc1dc6e3752e2ed1b355c0113fd8087d2db6b66/33"
+              target="_blank"
+              rel="noreferrer"
+            >
+              See it on Mintsquare
+            </a>
+          </p>
+          <div className="h-20 relative mb-6 mt-10 hidden md:block pointer-events-none">
+            <img
+              src="/argent_x_pxls_banner.svg"
+              className="absolute max-w-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            />
           </div>
-        </div>
-        <div style={{ height: 700 }} className="hidden md:block">
-          <Window
-            style={{
-              width: 525,
-              padding: 42,
-              margin: "auto",
-              marginTop: 100,
-            }}
-          >
-            <b>WTF? How do I get it?</b>
-            <div className="border-black border-b mb-1 mt-3" />
+          <div className="block md:hidden bg-white">
+            <div className="p-6">
+              <b>WTF? How do I get it?</b>
+            </div>
+            <div className="border-black border-b mb-1" />
             <div className="border-black border-b mb-6" />
-            <div>
-              1/ Sign with your Argent X wallet
+            <div className="px-6 pb-12">
+              You need to use an Argent X wallet on desktop in order to
+              participate.
               <br />
-              2/ Tweet it
-              <br />
-              3/ Verify your tweet
+              Go to <span className="underline">
+                https://argentx.pxls.wtf/
+              </span>{" "}
+              on your computer.
               <br />
               <br />
               On {reveal} we’ll randomly pick the winner amongst participants.
             </div>
-            <div className="border-black border-b mb-1 mt-6" />
-            <div className="border-black border-b mb-4" />
-            <div>{statusComponent}</div>
-          </Window>
+          </div>
+          <div style={{ height: 700 }} className="hidden md:block">
+            <Window
+              style={{
+                width: 525,
+                padding: 42,
+                margin: "auto",
+                marginTop: 100,
+              }}
+            >
+              <b>WTF? How do I get it?</b>
+              <div className="border-black border-b mb-1 mt-3" />
+              <div className="border-black border-b mb-6" />
+              <div>
+                1/ Sign with your Argent X wallet
+                <br />
+                2/ Tweet it
+                <br />
+                3/ Verify your tweet
+                <br />
+                <br />
+                On {reveal} we’ll randomly pick the winner amongst participants.
+              </div>
+              <div className="border-black border-b mb-1 mt-6" />
+              <div className="border-black border-b mb-4" />
+              <div>{statusComponent}</div>
+            </Window>
+          </div>
         </div>
       </div>
       <div className="bg-[#FF80E3] text-white pt-[70px] pb-8 text-center relative">
