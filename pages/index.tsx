@@ -11,17 +11,22 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Button from "../components/button";
 import Window from "../components/Window";
 import messageToSign from "../starknet/message";
-import { prisma } from "../prisma/client";
-
-type Props = {
-  participants: string[];
-};
 
 const reveal = "January the 9th at 7pm UTC";
 
-export default function Home({ participants }: Props) {
+export default function Home() {
   const { address, status } = useAccount();
   const { chain } = useNetwork();
+
+  const [participants, setParticipants] = useState<string[]>([]);
+
+  useEffect(() => {
+    const queryParticipants = async () => {
+      const { data } = await axios.get("/api/signatures");
+      setParticipants(data.signatures);
+    };
+    queryParticipants();
+  }, []);
 
   const isMainnet = chain && chain.id === "0x534e5f4d41494e";
 
@@ -402,6 +407,7 @@ You can enter and find the rules here: https://argentx.pxls.wtf/`;
           className="w-full absolute top-0 -translate-y-1/2"
         />
         <b className="pb-6 block">They participated</b>
+        {participants.length === 0 && <div>Loading...</div>}
         {verifyingSignature === "done" && verifyingTweet === "done" && (
           <div className="max-w-[437px] mx-auto break-words pb-6 px-6">
             {address} (you)
@@ -433,16 +439,3 @@ You can enter and find the rules here: https://argentx.pxls.wtf/`;
     </>
   );
 }
-
-export const getServerSideProps = async (ctx: NextPageContext) => {
-  const signatures = await prisma.signatures.findMany({
-    where: {
-      tweet: { not: null },
-    },
-  });
-  return {
-    props: {
-      participants: signatures.map((s: any) => s.wallet),
-    },
-  };
-};
