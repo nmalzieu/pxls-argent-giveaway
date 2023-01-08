@@ -19,11 +19,13 @@ export default function Home() {
   const { chain } = useNetwork();
 
   const [participants, setParticipants] = useState<string[]>([]);
+  const [participantsCount, setParticipantsCount] = useState(0);
 
   useEffect(() => {
     const queryParticipants = async () => {
       const { data } = await axios.get("/api/signatures");
       setParticipants(data.signatures);
+      setParticipantsCount(data.signaturesCount);
     };
     queryParticipants();
   }, []);
@@ -432,6 +434,9 @@ You can enter and find the rules here: https://argentx.pxls.wtf/`;
               {p}
             </div>
           ))}
+        {participantsCount > 500 && (
+          <div>And {participantsCount - 500} others!</div>
+        )}
       </div>
       <div className="bg-white py-8">
         <img src="/argent_x_pxls.svg" className="block mx-auto" />
