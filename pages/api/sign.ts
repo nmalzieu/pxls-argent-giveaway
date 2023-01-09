@@ -10,6 +10,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  res.status(400).json({
+    message: "The giveaway has ended",
+  });
+  return;
   const body = req.body;
   if (!body.account || !body.signature) {
     res.status(400).json({

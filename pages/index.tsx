@@ -11,21 +11,24 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Button from "../components/button";
 import Window from "../components/Window";
 import messageToSign from "../starknet/message";
+import { prisma } from "../prisma/client";
 
 const reveal = "January the 9th at 7pm UTC";
 
-export default function Home() {
+export default function Home({
+  participantsCount,
+}: {
+  participantsCount: number;
+}) {
   const { address, status } = useAccount();
   const { chain } = useNetwork();
 
   const [participants, setParticipants] = useState<string[]>([]);
-  const [participantsCount, setParticipantsCount] = useState(0);
 
   useEffect(() => {
     const queryParticipants = async () => {
       const { data } = await axios.get("/api/signatures");
       setParticipants(data.signatures);
-      setParticipantsCount(data.signaturesCount);
     };
     queryParticipants();
   }, []);
@@ -312,6 +315,28 @@ You can enter and find the rules here: https://argentx.pxls.wtf/`;
     );
   }
 
+  statusComponent = (
+    <div>
+      <div className="mb-2">
+        <b>Making this tool opensource</b>
+      </div>
+      <div>
+        This tool is now opensource. Any builder on Starknet can re-use it to
+        engage their community. We believe this is the way to make it all
+        together - have fun playing with it!
+        <br />
+        <Button
+          text="Go to Github repo"
+          action={() => {
+            window.open("https://github.com/nmalzieu/pxls-argent-giveaway");
+          }}
+          rainbow
+          block
+        />
+      </div>
+    </div>
+  );
+
   return (
     <>
       <div className="background">
@@ -329,9 +354,10 @@ You can enter and find the rules here: https://argentx.pxls.wtf/`;
             />
           </div>
           <p className="text-white max-w-[407px] text-center mx-auto p-6 md:p-0 mb-12">
-            Starknet people, we are giving away this masterpiece! As part of the
-            Meet the Dapp series, we explained how to order an rtwrk on Pxls. We
-            ordered this “Argent X Pxls” rtwrk and we’ll give it to one of you.
+            Starknet people, thank you so much for making this giveaway a
+            success! {participantsCount} wallets participated in the first ever
+            on-chain giveaway on Starknet and we’ll pick the winner of the
+            “Argent X PXLS” rtwrk NFT very soon.
             <br /> <br />
             <a
               href="https://aspect.co/asset/0x0044bac3f28118ea1946963a1bc1dc6e3752e2ed1b355c0113fd8087d2db6b66/33"
@@ -357,21 +383,47 @@ You can enter and find the rules here: https://argentx.pxls.wtf/`;
           </div>
           <div className="block md:hidden bg-white">
             <div className="p-6">
-              <b>WTF? How do I get it?</b>
+              <b>{participantsCount} wallets participated - WFT?</b>
             </div>
             <div className="border-black border-b mb-1" />
             <div className="border-black border-b mb-6" />
             <div className="px-6 pb-12">
-              You need to use an Argent X wallet on desktop in order to
-              participate.
-              <br />
-              Go to <span className="underline">
-                https://argentx.pxls.wtf/
-              </span>{" "}
-              on your computer.
+              Together with Argent, we built the first ever on-chain giveaway on
+              Starknet. {participantsCount} wallets participated, which is way
+              beyond our craziest expectations. It proves once again that the
+              Starknet ecosystem is striving!
               <br />
               <br />
-              On {reveal} we’ll randomly pick the winner amongst participants.
+              The winner will be anounced very soon on our{" "}
+              <a
+                href="https://twitter.com/PxlsWtf"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Twitter account
+              </a>
+              .
+            </div>
+            <div className="border-black border-b mb-1 mt-6" />
+            <div className="border-black border-b mb-6" />
+            <div className="mb-6">
+              <b>Making this tool opensource</b>
+            </div>
+            <div className="px-4 mb-12">
+              This tool is now opensource. Any builder on Starknet can re-use it
+              to engage their community. We believe this is the way to make it
+              all together - have fun playing with it!
+              <br />
+              <Button
+                text="Go to Github repo"
+                action={() => {
+                  window.open(
+                    "https://github.com/nmalzieu/pxls-argent-giveaway"
+                  );
+                }}
+                rainbow
+                block
+              />
             </div>
           </div>
           <div style={{ height: 700 }} className="hidden md:block">
@@ -383,18 +435,15 @@ You can enter and find the rules here: https://argentx.pxls.wtf/`;
                 marginTop: 100,
               }}
             >
-              <b>WTF? How do I get it?</b>
+              <b>{participantsCount} wallets participated - WFT?</b>
               <div className="border-black border-b mb-1 mt-3" />
               <div className="border-black border-b mb-6" />
               <div>
-                1/ Sign with your Argent X wallet
-                <br />
-                2/ Tweet it
-                <br />
-                3/ Verify your tweet
-                <br />
-                <br />
-                On {reveal} we’ll randomly pick the winner amongst participants.
+                Together with Argent, we built the first ever on-chain giveaway
+                on Starknet. {participantsCount} wallets participated, which is
+                way beyond our craziest expectations. It proves once again that
+                the Starknet ecosystem is striving!The winner will be anounced
+                very soon on our Twitter account.
               </div>
               <div className="border-black border-b mb-1 mt-6" />
               <div className="border-black border-b mb-4" />
@@ -444,3 +493,15 @@ You can enter and find the rules here: https://argentx.pxls.wtf/`;
     </>
   );
 }
+
+export const getServerSideProps = async (ctx: NextPageContext) => {
+  return {
+    props: {
+      participantsCount: await prisma.signatures.count({
+        where: {
+          tweet: { not: null },
+        },
+      }),
+    },
+  };
+};

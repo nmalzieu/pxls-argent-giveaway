@@ -9,6 +9,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  res.status(400).json({
+    message: "The giveaway has ended",
+  });
+  return;
   if (req.method !== "POST") {
     return res.status(405).json({ error: "POST endpoint" });
   }
