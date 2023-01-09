@@ -13,52 +13,52 @@ export default async function handler(
     message: "The giveaway has ended",
   });
   return;
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "POST endpoint" });
-  }
-  const { tweetURL } = req.body;
-  if (!tweetURL) {
-    return res.status(400).json({ error: "WRONG_URL" });
-  }
+  // if (req.method !== "POST") {
+  //   return res.status(405).json({ error: "POST endpoint" });
+  // }
+  // const { tweetURL } = req.body;
+  // if (!tweetURL) {
+  //   return res.status(400).json({ error: "WRONG_URL" });
+  // }
 
-  const match = tweetURL.match(tweetIDRegex);
-  if (!match) {
-    return res.status(400).json({ error: "WRONG_URL" });
-  }
-  const tweetId = match[2];
+  // const match = tweetURL.match(tweetIDRegex);
+  // if (!match) {
+  //   return res.status(400).json({ error: "WRONG_URL" });
+  // }
+  // const tweetId = match[2];
 
-  const tweet = await axios.get(`https://api.twitter.com/2/tweets/${tweetId}`, {
-    headers: {
-      Authorization:
-        "Bearer AAAAAAAAAAAAAAAAAAAAAML2kQEAAAAADM5GS0snuBqGhIDKjZPFF3ZuYkw%3DOhaw0wIOnyIo35UvFwQndo2NE79By6RuNUrh0NW7UECSoBxtqd",
-    },
-  });
+  // const tweet = await axios.get(`https://api.twitter.com/2/tweets/${tweetId}`, {
+  //   headers: {
+  //     Authorization:
+  //       "Bearer AAAAAAAAAAAAAAAAAAAAAML2kQEAAAAADM5GS0snuBqGhIDKjZPFF3ZuYkw%3DOhaw0wIOnyIo35UvFwQndo2NE79By6RuNUrh0NW7UECSoBxtqd",
+  //   },
+  // });
 
-  const tweetContent = tweet.data?.data?.text;
+  // const tweetContent = tweet.data?.data?.text;
 
-  if (!tweetContent) {
-    return res.status(400).json({ error: "WRONG_TWEET" });
-  }
+  // if (!tweetContent) {
+  //   return res.status(400).json({ error: "WRONG_TWEET" });
+  // }
 
-  const codeMatch = tweetContent.match(codeRegex);
-  if (!codeMatch) {
-    return res.status(400).json({ error: "WRONG_TWEET" });
-  }
+  // const codeMatch = tweetContent.match(codeRegex);
+  // if (!codeMatch) {
+  //   return res.status(400).json({ error: "WRONG_TWEET" });
+  // }
 
-  const code = codeMatch[1];
+  // const code = codeMatch[1];
 
-  const signature = await prisma.signatures.findFirst({ where: { code } });
+  // const signature = await prisma.signatures.findFirst({ where: { code } });
 
-  if (!signature) {
-    return res.status(400).json({ error: "WRONG_TWEET" });
-  }
+  // if (!signature) {
+  //   return res.status(400).json({ error: "WRONG_TWEET" });
+  // }
 
-  if (!signature.tweet) {
-    await prisma.signatures.update({
-      where: { code },
-      data: { tweet: tweetURL },
-    });
-  }
+  // if (!signature.tweet) {
+  //   await prisma.signatures.update({
+  //     where: { code },
+  //     data: { tweet: tweetURL },
+  //   });
+  // }
 
-  res.status(200).json({ message: "OK" });
+  // res.status(200).json({ message: "OK" });
 }
