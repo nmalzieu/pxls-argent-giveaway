@@ -356,8 +356,8 @@ You can enter and find the rules here: https://argentx.pxls.wtf/`;
           <p className="text-white max-w-[407px] text-center mx-auto p-6 md:p-0 mb-12">
             Starknet people, thank you so much for making this giveaway a
             success! {participantsCount} wallets participated in the first ever
-            on-chain giveaway on Starknet and we’ll pick the winner of the
-            “Argent X PXLS” rtwrk NFT very soon.
+            on-chain giveaway on Starknet. Kudos to 0x63...cc7 for winning the
+            “Argent X Pxls” rtwrk!
             <br /> <br />
             <a
               href="https://aspect.co/asset/0x0044bac3f28118ea1946963a1bc1dc6e3752e2ed1b355c0113fd8087d2db6b66/33"
@@ -394,15 +394,7 @@ You can enter and find the rules here: https://argentx.pxls.wtf/`;
               Starknet ecosystem is striving!
               <br />
               <br />
-              The winner will be anounced very soon on our{" "}
-              <a
-                href="https://twitter.com/PxlsWtf"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Twitter account
-              </a>
-              .
+              Kudos to 0x63...cc7 for winning the “Argent X Pxls” rtwrk!
             </div>
             <div className="border-black border-b mb-1 mt-6" />
             <div className="border-black border-b mb-6" />
@@ -442,8 +434,10 @@ You can enter and find the rules here: https://argentx.pxls.wtf/`;
                 Together with Argent, we built the first ever on-chain giveaway
                 on Starknet. {participantsCount} wallets participated, which is
                 way beyond our craziest expectations. It proves once again that
-                the Starknet ecosystem is striving!The winner will be anounced
-                very soon on our Twitter account.
+                the Starknet ecosystem is striving!
+                <br />
+                <br />
+                Kudos to 0x63...cc7 for winning the “Argent X Pxls” rtwrk!
               </div>
               <div className="border-black border-b mb-1 mt-6" />
               <div className="border-black border-b mb-4" />
